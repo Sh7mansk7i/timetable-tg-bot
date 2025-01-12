@@ -29,16 +29,18 @@ function App() {
     return (
         <div className="app">
             <div className="top-panel">
-                {date.toDateString() !== today.toDateString() && (
-                    <FaArrowLeft onClick={() => changeDay(-1)}/>
-                )}
+                <div className="nav-button" onClick={() => changeDay(-1)}>
+                    <FaArrowLeft />
+                </div>
                 <div className="date-info">
                     <span className="date-text">
                         {daysOfWeek[date.getDay()]}, {date.getDate()} {months[date.getMonth()]}
                     </span>
                     <span className="week-number">Тиждень: {calculateWeekNumber(date)}</span>
                 </div>
-                <FaArrowRight onClick={() => changeDay(1)}/>
+                <div className="nav-button" onClick={() => changeDay(1)}>
+                    <FaArrowRight />
+                </div>
             </div>
             <div className="content">
                 <h1>Основний контент</h1>
