@@ -6,38 +6,46 @@ function App() {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     const today = new Date();
-    const [day, setDay] = useState(today.getDay());
-    const [date, setDate] = useState(today.getDate());
-    const [month, setMonth] = useState(today.getMonth());
-    const [year, setYear] = useState(today.getFullYear());
-
-    const calculateWeekNumber = () => {
-        // Кількість днів у кожному місяці
-        const daysInMonth = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-        // Підрахунок днів до поточного дня року
-        const daysElapsed = daysInMonth
-            .slice(0, month) // Вибираємо всі місяці до поточного
-            .reduce((sum, days) => sum + days, 0) + date;
-
-        // Обчислення номера тижня
-        return Math.floor((daysElapsed - 13) / 7 + 1) % 4;
-    };
+    const [date, setDate] = useState(today);
 
     const isLeapYear = (year) => {
         return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
     };
 
+    const calculateWeekNumber = (date) => {
+        // Кількість днів у кожному місяці
+        const daysInMonth = [31, isLeapYear(date.getFullYear()) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        // Обчислення поточного дня року
+        const dayOfYear = daysInMonth
+            .slice(0, date.getMonth())
+            .reduce((sum, days) => sum + days, 0) + date.getDate();
+
+        // Обчислення номера тижня
+        return Math.floor((dayOfYear - 13) / 7 + 1) % 4;
+    };
+
+    const changeDay = (offset) => {
+        const newDate = new Date(date);
+        newDate.setDate(date.getDate() + offset);
+        setDate(newDate);
+    };
+
     return (
         <div className="app">
-            <div className="info-display">
-                <h1>Today:</h1>
-                <p className="date">
-                    {daysOfWeek[day]}, {date} {months[month]} {year}
-                </p>
-                <p className="week-number">
-                    Week Number: {calculateWeekNumber()}
-                </p>
+            <div className="top-panel">
+                <button className="nav-button" onClick={() => changeDay(-1)}>⬅️</button>
+                <div className="date-info">
+                    <span className="date-text">
+                        {daysOfWeek[date.getDay()]}, {date.getDate()} {months[date.getMonth()]} {date.getFullYear()}
+                    </span>
+                    <span className="week-number">Week Number: {calculateWeekNumber(date)}</span>
+                </div>
+                <button className="nav-button" onClick={() => changeDay(1)}>➡️</button>
+            </div>
+            <div className="content">
+                <h1>Main Content</h1>
+                <p>This is where your main content will go.</p>
             </div>
         </div>
     );

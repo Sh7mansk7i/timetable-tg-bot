@@ -1,28 +1,76 @@
 .app {
   text-align: center;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #f9d423, #ff4e50);
+  background: linear-gradient(135deg, #6dd5fa, #2980b9);
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   color: white;
 }
 
-.info-display {
-  text-align: center;
+.top-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 10%;
+  width: 90%;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
+  padding: 1rem 2rem;
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.date {
+.date-info {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.date-text {
   font-size: 1.5rem;
-  margin: 1rem 0;
+  font-weight: bold;
 }
 
 .week-number {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.nav-button {
+  background-color: #ffffff;
+  color: #2980b9;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
   font-weight: bold;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.nav-button:hover {
+  background-color: #6dd5fa;
+  transform: scale(1.1);
+}
+
+.nav-button:active {
+  transform: scale(1.05);
+}
+
+.content {
+  margin-top: 20%;
+  text-align: center;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  font-size: 1.2rem;
 }
