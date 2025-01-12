@@ -13,15 +13,8 @@ function App() {
     };
 
     const calculateWeekNumber = (date) => {
-        // Кількість днів у кожному місяці
         const daysInMonth = [31, isLeapYear(date.getFullYear()) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-        // Обчислення поточного дня року
-        const dayOfYear = daysInMonth
-            .slice(0, date.getMonth())
-            .reduce((sum, days) => sum + days, 0) + date.getDate();
-
-        // Обчислення номера тижня
+        const dayOfYear = daysInMonth.slice(0, date.getMonth()).reduce((sum, days) => sum + days, 0) + date.getDate();
         return Math.floor(((dayOfYear - 13) / 7) % 4) + 1;
     };
 
@@ -33,8 +26,13 @@ function App() {
 
     return (
         <div className="app">
+            <div className="header">
+                <h1 className="title">Timetable</h1>
+            </div>
             <div className="top-panel">
-                <button className="nav-button" onClick={() => changeDay(-1)}>⬅️</button>
+                {date.toDateString() !== today.toDateString() && (
+                    <button className="nav-button" onClick={() => changeDay(-1)}>⬅️</button>
+                )}
                 <div className="date-info">
                     <span className="date-text">
                         {daysOfWeek[date.getDay()]}, {date.getDate()} {months[date.getMonth()]} {date.getFullYear()}
