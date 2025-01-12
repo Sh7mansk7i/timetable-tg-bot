@@ -1,9 +1,11 @@
 import './App.css';
 import { useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 function App() {
     const daysOfWeek = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота"];
-    const months = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
+    const months = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
 
     const today = new Date();
     const [date, setDate] = useState(today);
@@ -28,7 +30,8 @@ function App() {
         <div className="app">
             <div className="top-panel">
                 {date.toDateString() !== today.toDateString() && (
-                    <button className="nav-button" onClick={() => changeDay(-1)}>⬅️</button>
+
+                    <button className="nav-button" onClick={() => changeDay(-1)}><FaArrowLeft /></button>
                 )}
                 <div className="date-info">
                     <span className="date-text">
@@ -36,7 +39,7 @@ function App() {
                     </span>
                     <span className="week-number">Тиждень: {calculateWeekNumber(date)}</span>
                 </div>
-                <button className="nav-button" onClick={() => changeDay(1)}>➡️</button>
+                <button className="nav-button" onClick={() => changeDay(1)}><FaArrowRight /></button>
             </div>
             <div className="content">
                 <h1>Основний контент</h1>
