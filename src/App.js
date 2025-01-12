@@ -2,8 +2,8 @@ import './App.css';
 import { useState } from "react";
 
 function App() {
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const daysOfWeek = ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота"];
+    const months = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
 
     const today = new Date();
     const [date, setDate] = useState(today);
@@ -26,24 +26,21 @@ function App() {
 
     return (
         <div className="app">
-            <div className="header">
-                <h1 className="title">Timetable</h1>
-            </div>
             <div className="top-panel">
                 {date.toDateString() !== today.toDateString() && (
                     <button className="nav-button" onClick={() => changeDay(-1)}>⬅️</button>
                 )}
                 <div className="date-info">
                     <span className="date-text">
-                        {daysOfWeek[date.getDay()]}, {date.getDate()} {months[date.getMonth()]} {date.getFullYear()}
+                        {daysOfWeek[date.getDay()]}, {date.getDate()} {months[date.getMonth()]}
                     </span>
-                    <span className="week-number">Week Number: {calculateWeekNumber(date)}</span>
+                    <span className="week-number">Тиждень: {calculateWeekNumber(date)}</span>
                 </div>
                 <button className="nav-button" onClick={() => changeDay(1)}>➡️</button>
             </div>
             <div className="content">
-                <h1>Main Content</h1>
-                <p>This is where your main content will go.</p>
+                <h1>Основний контент</h1>
+                <p>Тут буде розміщено основний контент.</p>
             </div>
         </div>
     );
