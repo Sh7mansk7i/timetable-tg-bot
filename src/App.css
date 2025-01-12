@@ -42,20 +42,6 @@
   display: block;
 }
 
-.nav-button svg {
-  font-size: 30px;
-  color: #fff;
-}
-
-.nav-button:hover {
-  background-color: #6dd5fa;
-  transform: scale(1.1);
-}
-
-.nav-button:active {
-  transform: scale(1.05);
-}
-
 .content {
   margin-top: auto;
   margin-bottom: auto;

@@ -30,7 +30,7 @@ function App() {
         <div className="app">
             <div className="top-panel">
                 {date.toDateString() !== today.toDateString() && (
-                    <div onClick={() => changeDay(-1)}><FaArrowLeft/></div>
+                    <button onClick={() => changeDay(-1)}><FaArrowLeft/></button>
                 )}
                 <div className="date-info">
                     <span className="date-text">
@@ -38,7 +38,7 @@ function App() {
                     </span>
                     <span className="week-number">Тиждень: {calculateWeekNumber(date)}</span>
                 </div>
-                <div onClick={() => changeDay(1)}><FaArrowRight/></div>
+                <button onClick={() => changeDay(1)}><FaArrowRight/></button>
             </div>
             <div className="content">
                 <h1>Основний контент</h1>
