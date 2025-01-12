@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/timetable-tg-bot/static/css/main.77e53603.css",
-    "main.js": "/timetable-tg-bot/static/js/main.3d1bd035.js",
+    "main.css": "/timetable-tg-bot/static/css/main.09b22ea6.css",
+    "main.js": "/timetable-tg-bot/static/js/main.f3a8930b.js",
     "static/js/488.859216b2.chunk.js": "/timetable-tg-bot/static/js/488.859216b2.chunk.js",
     "index.html": "/timetable-tg-bot/index.html",
-    "main.77e53603.css.map": "/timetable-tg-bot/static/css/main.77e53603.css.map",
-    "main.3d1bd035.js.map": "/timetable-tg-bot/static/js/main.3d1bd035.js.map",
+    "main.09b22ea6.css.map": "/timetable-tg-bot/static/css/main.09b22ea6.css.map",
+    "main.f3a8930b.js.map": "/timetable-tg-bot/static/js/main.f3a8930b.js.map",
     "488.859216b2.chunk.js.map": "/timetable-tg-bot/static/js/488.859216b2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.77e53603.css",
-    "static/js/main.3d1bd035.js"
+    "static/css/main.09b22ea6.css",
+    "static/js/main.f3a8930b.js"
   ]
 }
