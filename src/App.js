@@ -22,7 +22,7 @@ function App() {
             .reduce((sum, days) => sum + days, 0) + date.getDate();
 
         // Обчислення номера тижня
-        return Math.floor((dayOfYear - 13) / 7 + 1) % 4;
+        return Math.floor(((dayOfYear - 13) / 7) % 4) + 1;
     };
 
     const changeDay = (offset) => {
