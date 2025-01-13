@@ -60,22 +60,32 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.nav-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
 
 .content {
   margin-top: 6rem;
-  padding: 1rem;
+  padding: 0;
 }
 
 .lesson-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0;
+  padding: 2%;
   list-style: none;
+}
+
+.number-of-lesson-button {
+  cursor: not-allowed;
+  box-shadow: none;
+  background-color: #e9ecef;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  width: 10%;
+  color: #495057;
+  transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .lesson-button {
@@ -85,14 +95,13 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
   color: #495057;
+  margin-left: 2%;
+  width: 84%;
   cursor: pointer;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
-.lesson-button:hover {
-  background-color: #d6d8db;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+
 
 .lesson-button.empty {
   color: #adb5bd;

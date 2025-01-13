@@ -75,9 +75,14 @@ function App() {
             <div className="content">
                 <ul className="lesson-list">
                     {lessons.map((lesson, index) => (
-                        <button key={index} className={`lesson-button ${lesson ? '' : 'empty'}`}>
-                            {lesson || '---'}
-                        </button>
+                        <li key={index} className="lesson-item">
+                            <button className="number-of-lesson-button">
+                                {index + 1}
+                            </button>
+                            <button className={`lesson-button ${lesson ? '' : 'empty'}`}>
+                                {lesson || '---'}
+                            </button>
+                        </li>
                     ))}
                 </ul>
             </div>
