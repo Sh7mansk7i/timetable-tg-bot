@@ -1,7 +1,7 @@
 import './App.css';
 import { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import {schedule, daysOfWeek, months, lessonTime} from "./data/Schedule";
+import { schedule, daysOfWeek, months, lessonTime } from "./data/Schedule";
 
 function App() {
     const today = new Date();
@@ -25,6 +25,42 @@ function App() {
         newDate.setDate(date.getDate() + offset);
         setDate(newDate);
     };
+
+    const isSameDay = (d1, d2) => {
+        return d1.getFullYear() === d2.getFullYear() &&
+            d1.getMonth() === d2.getMonth() &&
+            d1.getDate() === d2.getDate();
+    };
+
+    const getLessonStatus = (index) => {
+        const now = new Date();
+        now.setHours(11, 15, 0, 0);
+        const [start, end] = lessonTime[index].split('-');
+        const [startHour, startMinute] = start.split(':').map(Number);
+        const [endHour, endMinute] = end.split(':').map(Number);
+
+        const lessonStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), startHour, startMinute);
+        const lessonEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), endHour, endMinute);
+
+        if (now < lessonStart) {
+            return `${lessonTime[index]}`;
+        } else if (now >= lessonStart && now <= lessonEnd) {
+            const minutesToEnd = Math.ceil((lessonEnd - now) / 60000);
+            return `⏳ ${minutesToEnd} хв`;
+        } else if (index < lessonTime.length - 1) {
+            const [nextStart] = lessonTime[index + 1].split('-');
+            const [nextStartHour, nextStartMinute] = nextStart.split(':').map(Number);
+            const nextLessonStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), nextStartHour, nextStartMinute);
+
+            if (now < nextLessonStart) {
+                const minutesToNext = Math.floor((nextLessonStart - now) / 60000);
+                return `➡️ ${minutesToNext} хв`;
+            }
+        }
+
+        return "🏁";
+    };
+
 
     const weekNumber = calculateWeekNumber(date);
     const currentDay = daysOfWeek[date.getDay()];
@@ -55,7 +91,7 @@ function App() {
                                 {lesson || '🧘🏿'}
                             </button>
                             <button className="time-to-lesson-button">
-                                {lessonTime[index]}
+                                {isSameDay(date, today) ? getLessonStatus(index) : lessonTime[index]}
                             </button>
                         </li>
                     ))) : (<>🧘🏿</>)}
