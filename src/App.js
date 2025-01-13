@@ -17,7 +17,7 @@ function App() {
 
     const getScheduleForDay = (day, weekNumber) => {
         const key = `${day}${weekNumber}`;
-        return schedule[key] || ['Розклад відсутній'];
+        return schedule[key];
     };
 
     const changeDay = (offset) => {
@@ -46,7 +46,7 @@ function App() {
             </div>
             <div className="content">
                 <ul className="lesson-list">
-                    {lessons.map((lesson, index) => (
+                    {lessons ? (lessons.map((lesson, index) => (
                         <li key={index} className="lesson-item">
                             <button className="number-of-lesson-button">
                                 {index + 1}
@@ -58,7 +58,7 @@ function App() {
                                 {lessonTime[index]}
                             </button>
                         </li>
-                    ))}
+                    ))) : (<>🧘🏿</>)}
                 </ul>
             </div>
         </div>
