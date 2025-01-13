@@ -34,7 +34,7 @@ function App() {
 
     const getLessonStatus = (index) => {
         const now = new Date();
-        now.setHours(11, 15, 0, 0);
+        // now.setHours(11, 15, 0, 0);
         const [start, end] = lessonTime[index].split('-');
         const [startHour, startMinute] = start.split(':').map(Number);
         const [endHour, endMinute] = end.split(':').map(Number);
