@@ -6,6 +6,7 @@ import { schedule, daysOfWeek, months, lessonTime } from "./data/Schedule";
 function App() {
     const today = new Date();
     const [date, setDate] = useState(today);
+    const [chosenLesson, setChosenLesson] = useState("");
 
     const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
@@ -21,6 +22,7 @@ function App() {
     };
 
     const changeDay = (offset) => {
+        setChosenLesson("");
         const newDate = new Date(date);
         newDate.setDate(date.getDate() + offset);
         setDate(newDate);
@@ -32,9 +34,10 @@ function App() {
             d1.getDate() === d2.getDate();
     };
 
+
     const getLessonStatus = (index) => {
         const now = new Date();
-        // now.setHours(11, 15, 0, 0);
+        // now.setHours(11, 25, 0, 0);
         const [start, end] = lessonTime[index].split('-');
         const [startHour, startMinute] = start.split(':').map(Number);
         const [endHour, endMinute] = end.split(':').map(Number);
@@ -81,21 +84,32 @@ function App() {
                 <button className="nav-button" onClick={() => changeDay(1)}><FaArrowRight /></button>
             </div>
             <div className="content">
-                <ul className="lesson-list">
-                    {lessons ? (lessons.map((lesson, index) => (
-                        <li key={index} className="lesson-item">
-                            <button className="number-of-lesson-button">
-                                {index + 1}
-                            </button>
-                            <button className={`lesson-button ${lesson ? '' : 'empty'}`}>
-                                {lesson || '🧘🏿'}
-                            </button>
-                            <button className="time-to-lesson-button">
-                                {isSameDay(date, today) ? getLessonStatus(index) : lessonTime[index]}
-                            </button>
-                        </li>
-                    ))) : (<>🧘🏿</>)}
-                </ul>
+                {!chosenLesson ? (
+                    <ul className="lesson-list">
+                        {lessons ? (lessons.map((lesson, index) => (
+                            <li key={index} className="lesson-item">
+                                <button className="number-of-lesson-button">
+                                    {index + 1}
+                                </button>
+                                <button className={`lesson-button ${lesson ? '' : 'empty'}`} onClick={() => setChosenLesson(lesson)}>
+                                    {lesson || '🧘🏿'}
+                                </button>
+                                <button className="time-to-lesson-button">
+                                    {isSameDay(date, today) ? getLessonStatus(index) : lessonTime[index]}
+                                </button>
+                            </li>
+                        ))) : (<>🧘🏿</>)}
+                    </ul>
+                ) : (
+                    <>
+                        {daysOfWeek[date.getDay()]}, {date.getDate()} {months[date.getMonth()]} {chosenLesson}
+                        <br />
+                        <button className={`back-to-lessons-button`} onClick={() => setChosenLesson("")}>
+                            back
+                        </button>
+                    </>
+                )}
+
             </div>
         </div>
     );
